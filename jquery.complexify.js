@@ -18,32 +18,6 @@
 			};
 			var options = $.extend(defaults, options);
 
-			var calculateComplexity = function(password) {
-				var complexity = 0, valid = false;
-
-				if (password.containsCharSet(LOWER_CHARS)) {
-					complexity += LOWER_CHARS.length;
-				}
-
-				if (password.containsCharSet(UPPER_CHARS)) {
-					complexity += UPPER_CHARS.length;
-				}
-
-				if (password.containsCharSet(PUNCTUATION)) {
-					complexity += PUNCTUATION.length;
-				}
-
-				if (password.containsCharSet(NUMBERS)) {
-					complexity += NUMBERS.length;
-				}
-				
-				complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
-				valid = (complexity > MIN_COMPLEXITY && password.length >= options.minimumChars);
-				complexity = (complexity / MAX_COMPLEXITY) * 100;
-				complexity = (complexity > 100) ? 100 : complexity;
-				return {'valid':valid, 'complexity':complexity};
-			}
-
 			String.prototype.containsCharSet = function( charset) {
 				for (var i = 0; i < charset.length; i++) {
 					if (this.indexOf(charset[i]) > -1) {
@@ -56,8 +30,24 @@
 			return this.each(function () {
 				$(this).keyup(function () {
 					var password = $(this).val();
-					var result = calculateComplexity(password);
-					callback(result.valid, result.complexity);
+					var complexity = 0, valid = false;
+				
+					for (var i = SETS.length - 1; i >= 0; i--) {
+						if (password.containsCharSet(SETS[i])) {
+							complexity += SETS[i].length;
+						}
+					}
+					
+					// Use natural log to produce linear scale
+					complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
+
+					valid = (complexity > MIN_COMPLEXITY && password.length >= options.minimumChars);
+
+					// Scale to percentage, so it can be used for a progress bar
+					complexity = (complexity / MAX_COMPLEXITY) * 100;
+					complexity = (complexity > 100) ? 100 : complexity;
+
+					callback(valid, complexity);
 				});
 			});
 			
