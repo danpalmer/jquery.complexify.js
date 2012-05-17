@@ -22,9 +22,9 @@
 			}
 			options = $.extend(defaults, options);
 
-			String.prototype.containsCharSet = function( charset) {
+			var containsCharSet = function(str, charset) {
 				for (var i = 0; i < charset.length; i++) {
-					if (this.indexOf(charset[i]) > -1) {
+					if (str.indexOf(charset[i]) > -1) {
 						return true;
 					}
 				}
@@ -37,7 +37,7 @@
 					var complexity = 0, valid = false;
 				
 					for (var i = SETS.length - 1; i >= 0; i--) {
-						if (password.containsCharSet(SETS[i])) {
+						if (containsCharSet(password,SETS[i])) {
 							complexity += SETS[i].length;
 						}
 					}
