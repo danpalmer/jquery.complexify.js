@@ -16,7 +16,11 @@
 				minimumChars: 8,
 				strengthScaleFactor: 1
 			};
-			var options = $.extend(defaults, options);
+			if($.isFunction(options) && !callback) {
+				callback = options;
+				options = {};
+			}
+			options = $.extend(defaults, options);
 
 			String.prototype.containsCharSet = function( charset) {
 				for (var i = 0; i < charset.length; i++) {
