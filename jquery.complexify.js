@@ -3,10 +3,10 @@
 	$.fn.extend({
 		complexify: function(options, callback) {
 
-			var UPPER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-			var LOWER_CHARS = "abcdefghijklmnopqrstuvwxyz";
-			var NUMBERS = "0123456789";
-			var PUNCTUATION = "!@£$%^&*()_+-={}[]:\"|;'\<>?,./`~¡€#¢∞§¶•ªº–≠“‘…æ«≤≥÷=/*-+§±»’”";
+			var UPPER_CHARS = /[A-Z]/;
+			var LOWER_CHARS = /[a-z]/;
+			var NUMBERS = /\d/;
+			var PUNCTUATION = /[!@£$%^&*\(\)_+-=\{\}\[\]:\\"|;'<>?,.\/`~¡€#¢∞§¶•ªº–≠“‘…æ«≤≥÷=*-+§±»’”]/;
 			var SETS = [UPPER_CHARS, LOWER_CHARS, NUMBERS, PUNCTUATION];
 
 			var MIN_COMPLEXITY = 33; // 8 chars with Upper, Lower and Number
@@ -22,22 +22,13 @@
 			}
 			options = $.extend(defaults, options);
 
-			var containsCharSet = function(str, charset) {
-				for (var i = 0; i < charset.length; i++) {
-					if (str.indexOf(charset[i]) > -1) {
-						return true;
-					}
-				}
-				return false;
-			}
-
 			return this.each(function () {
 				$(this).keyup(function () {
 					var password = $(this).val();
 					var complexity = 0, valid = false;
 				
 					for (var i = SETS.length - 1; i >= 0; i--) {
-						if (containsCharSet(password,SETS[i])) {
+						if (SETS[i].test(password)) {
 							complexity += SETS[i].length;
 						}
 					}
