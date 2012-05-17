@@ -51,7 +51,7 @@
 					complexity = (complexity / MAX_COMPLEXITY) * 100;
 					complexity = (complexity > 100) ? 100 : complexity;
 
-					callback(valid, complexity);
+					callback.call(this, valid, complexity);
 				});
 			});
 			
