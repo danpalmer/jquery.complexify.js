@@ -9,7 +9,7 @@
 			var PUNCTUATION = "!@£$%^&*()_+-={}[]:\"|;'\<>?,./`~¡€#¢∞§¶•ªº–≠“‘…æ«≤≥÷=/*-+§±»’”";
 			var SETS = [UPPER_CHARS, LOWER_CHARS, NUMBERS, PUNCTUATION];
 
-			var MIN_COMPLEXITY = 49; // 8 chars with Upper, Lower and Number
+			var MIN_COMPLEXITY = 49; // 12 chars with Upper, Lower and Number
 			var MAX_COMPLEXITY = 120; //  25 chars, all charsets
 
 			var defaults = {
