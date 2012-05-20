@@ -1,3 +1,8 @@
+/*
+	http://github.com/danpalmer/jquery.complexify.js
+
+	This code is distributed under the WTFPL v2:
+*/
 (function ($) {
 
 	$.fn.extend({

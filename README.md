@@ -12,3 +12,5 @@ Complexify's default settings will enforce a level of complexity that would mean
 
 For more information, [visit the website](http://danpalmer.me/jquery-complexify).
 Written and maintained by [@danpalmer](http://twitter.com/danpalmer)
+
+This code is distributed under the WTFPL v2 licence.
