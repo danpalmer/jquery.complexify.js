@@ -20,11 +20,12 @@ Complexify supports Unicode and will add appropriate complexity for the size of 
 
 For example, as there are 96 Hiragana characters defined in the Unicode specification, including one of these will increase the brute-force complexity  by 96. 
 
-The rationale behind this is that in an attacker were wanting to include Japanese passwords in his attack, he/she may choose to include the Hiragana set in his/her attack, but not the Katakana set. Complexify divides Unicode into 94 appropriately group sets.
+The rationale behind this is that in an attacker were wanting to include Japanese passwords in his attack, he/she may choose to include the Hiragana set in his/her attack, but not the Katakana set. Complexify divides Unicode into 94 appropriately grouped sets.
 
 ###Version History
 
-**0.2** - Unicode support
+**0.2** - Unicode support  
+	Note: most passwords using punctuation will score slightly lower as the punctuation set has been split into multiple sets.
 
 **0.1** - Basic implementation
 
