@@ -137,7 +137,7 @@
 					for (var i = CHARSETS.length - 1; i >= 0; i--) {
 						complexity += additionalComplexityForCharset(password, CHARSETS[i]);
 					}
-					console.log(complexity);
+					
 					// Use natural log to produce linear scale
 					complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
 
