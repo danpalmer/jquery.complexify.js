@@ -132,6 +132,19 @@
 				}; return 0;
 			};
 			
+			// This really an issue, i.e. is nooooooob really a bad password?
+			function withoutCharacterRepetition(str) {
+				var a = str.split(''), without = '', prev;
+				//a.sort(); // To count repetition independant of character position
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] !== prev) {
+						without = without + a[i];
+					}
+					prev = a[i];
+				}
+				return without;
+			};
+			
 			function inBanlist(str) {
 				if (options.banmode === 'strict') {
 					for (var i = 1; i <= str.length; i++) {
@@ -155,6 +168,9 @@
 					// Reset complexity to 0 when banned password is found
 					if (!inBanlist(password)) {
 					
+						// Account for character repetition
+						password = withoutCharacterRepetition(password);
+
 						// Add character complexity
 						for (var i = CHARSETS.length - 1; i >= 0; i--) {
 							complexity += additionalComplexityForCharset(password, CHARSETS[i]);
