@@ -113,7 +113,8 @@
 
 			var defaults = {
 				minimumChars: 8,
-				strengthScaleFactor: 1
+				strengthScaleFactor: 1,
+				preventSubmit: true
 			};
 			if($.isFunction(options) && !callback) {
 				callback = options;
@@ -146,9 +147,24 @@
 					// Scale to percentage, so it can be used for a progress bar
 					complexity = (complexity / MAX_COMPLEXITY) * 100;
 					complexity = (complexity > 100) ? 100 : complexity;
+					
+					if (options.preventSubmit !== false) {
+						$(this).closest('form').unbind('submit.complexify');
+						if (!valid) {
+							$(this).closest('form').bind('submit.complexify', function(e) {
+								if($.isFunction(options.preventSubmit)) {
+									return options.preventSubmit.call(this, e);
+								} else {
+									e.preventDefault();
+									alert('Please provide a more complex password');
+									return false;
+								}
+							});
+						}
+					}
 
 					callback.call(this, valid, complexity);
-				});
+				}).keyup();
 			});
 			
 		}
