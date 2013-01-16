@@ -114,8 +114,9 @@
 			var defaults = {
 				minimumChars: 8,
 				strengthScaleFactor: 1,
-				bannedPasswords: [],
-				banmode: 'strict' // (strict|loose)
+				bannedPasswords: [],			
+				banmode: 'strict', // (strict|loose)
+				preventSubmit: true
 			};
 			if($.isFunction(options) && !callback) {
 				callback = options;
@@ -129,6 +130,19 @@
 						return charset[1] - charset[0] + 1;
 					};
 				}; return 0;
+			};
+			
+			// This really an issue, i.e. is nooooooob really a bad password?
+			function withoutCharacterRepetition(str) {
+				var a = str.split(''), without = '', prev;
+				//a.sort(); // To count repetition independant of character position
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] !== prev) {
+						without = without + a[i];
+					}
+					prev = a[i];
+				}
+				return without;
 			};
 			
 			function inBanlist(str) {
@@ -154,6 +168,9 @@
 					// Reset complexity to 0 when banned password is found
 					if (!inBanlist(password)) {
 					
+						// Account for character repetition
+						password = withoutCharacterRepetition(password);
+
 						// Add character complexity
 						for (var i = CHARSETS.length - 1; i >= 0; i--) {
 							complexity += additionalComplexityForCharset(password, CHARSETS[i]);
@@ -172,8 +189,23 @@
 					complexity = (complexity / MAX_COMPLEXITY) * 100;
 					complexity = (complexity > 100) ? 100 : complexity;
 					
+					if (options.preventSubmit !== false) {
+						$(this).closest('form').unbind('submit.complexify');
+						if (!valid) {
+							$(this).closest('form').bind('submit.complexify', function(e) {
+								if($.isFunction(options.preventSubmit)) {
+									return options.preventSubmit.call(this, e);
+								} else {
+									e.preventDefault();
+									alert('Please provide a more complex password');
+									return false;
+								}
+							});
+						}
+					}
+
 					callback.call(this, valid, complexity);
-				});
+				}).keyup();
 			});
 			
 		}

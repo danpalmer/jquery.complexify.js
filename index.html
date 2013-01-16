@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>complexify demo</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	
+	<script type="text/javascript" src='jquery.complexify.js'></script>	
+	<script type="text/javascript" src='jquery.complexify.banlist.js'></script>	
+	
+	<script type="text/javascript">
+		$(function() {
+			
+			var complexityClass = {
+				81: 'Perfect',
+				61: 'Strong',
+				51: 'Good',
+				41: 'Average',
+				0: 'Weak'				
+			}
+			
+			$("#password").complexify({
+					minimumChars		: 8,
+					strengthScaleFactor	: 1,
+					bannedPasswords		: complexify.banlist,
+					banmode				: 'loose',
+					preventSubmit		: function(e) {
+											e.preventDefault();
+											alert('Please provide a more complex password');
+											return false;
+										  }
+				}, function (valid, complexity) {
+					$('#progress').css({'width':complexity + '%'});
+					if (!valid) {
+						$('#progress').removeClass('progressbarValid').addClass('progressbarInvalid');
+					} else {
+						$('#progress').removeClass('progressbarInvalid').addClass('progressbarValid');
+					}
+					$('#complexity').html(Math.round(complexity) + '%');
+					for (var i in complexityClass) {
+						if (complexity >= i) {
+							$('#complexityClass').text(complexityClass[i]);
+						}
+					}
+				}
+			);
+		});
+	</script>
+	
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+		
+		#demo {
+			width:380px;
+			margin-right:auto;
+			margin-left:auto;
+		}
+
+		#progressbar {
+			margin-top: 10px;
+			width:100%;
+			height:48px;
+			display:block;
+			border-left:1px solid #ccc;
+			border-right:1px solid #ccc;
+			border-top:1px solid #ccc;
+			border-top-right-radius: 8px;
+			border-top-left-radius: 8px;
+			overflow:hidden;
+		}
+
+		#progress {
+			display:block;
+			height:100px;
+			width:0%;
+		}
+
+		.progressbarValid {
+			background-color:green;
+			background-image: -o-linear-gradient(-90deg, #8AD702 0%, #389100 100%);
+			background-image: -moz-linear-gradient(-90deg, #8AD702 0%, #389100 100%);
+			background-image: -webkit-linear-gradient(-90deg, #8AD702 0%, #389100 100%);
+			background-image: -ms-linear-gradient(-90deg, #8AD702 0%, #389100 100%);
+			background-image: linear-gradient(-90deg, #8AD702 0%, #389100 100%);
+		}
+		
+		.progressbarInvalid {
+			background-color:red;
+			background-image: -o-linear-gradient(-90deg, #F94046 0%, #92080B 100%);
+			background-image: -moz-linear-gradient(-90deg, #F94046 0%, #92080B 100%);
+			background-image: -webkit-linear-gradient(-90deg, #F94046 0%, #92080B 100%);
+			background-image: -ms-linear-gradient(-90deg, #F94046 0%, #92080B 100%);
+			background-image: linear-gradient(-90deg, #F94046 0%, #92080B 100%);
+		}
+
+		#status {
+			padding-bottom: 15px;
+			width:100%;
+			border:1px solid #ccc;
+			border-bottom-right-radius: 8px;
+			border-bottom-left-radius: 8px;
+		}
+
+		#password {
+			width:100%;
+			height:40px;
+			font-size:20px;
+			line-height:40px;
+			border-radius: 8px;
+			border: 1px solid silver;
+			text-align: center;
+		}		
+
+		#complexityLabel {
+			width:100%;
+			text-align:center;
+			margin-top:10px;
+			font-size:20px;
+			line-height:30px;
+		}
+
+		#complexity {
+			width:100%;
+			text-align:center;
+			font-family:"Helvetica Neue", "Helvetica", Arial, sans-serif;
+			font-weight:bold;
+			font-size:70px;
+			line-height:80px;
+			margin-top:10px;
+		}
+		
+		#submit {
+			margin-top: 10px;
+			width: 50%;
+			height: 40px;
+			font-size: 20px;
+			line-height: 40px;
+			border-radius: 8px;
+			border: 1px solid silver;
+			text-align: center;
+		}
+	</style>
+	
+</head>
+<body>
+	
+	<div id="demo">
+		<form>
+			<input type="password" id="password" placeholder="Password">
+			<div id="progressbar"><div id="progress"></div></div>
+			<div id="status">
+				<div id="complexity">0%</div>
+				<div id="complexityLabel"><span id="complexityClass"></span> complexity</div>
+			</div>
+			<input id="submit" type="submit" />
+		</form>
+	</div>
+	
+</body>
+</html>
