@@ -113,7 +113,9 @@
 
 			var defaults = {
 				minimumChars: 8,
-				strengthScaleFactor: 1
+				strengthScaleFactor: 1,
+				bannedPasswords: [],
+				banmode: 'strict' // (strict|loose)
 			};
 			if($.isFunction(options) && !callback) {
 				callback = options;
@@ -128,14 +130,37 @@
 					};
 				}; return 0;
 			};
+			
+			function inBanlist(str) {
+				if (options.banmode === 'strict') {
+					for (var i = 1; i <= str.length; i++) {
+						if ($.inArray(str.substr(0, i), options.bannedPasswords) > -1) {
+							// Will return true if a word from the list appears at
+							// the beginning of the password
+							return true;
+						}
+					}
+					return false;
+				} else {
+					return $.inArray(str, options.bannedPasswords) > -1 ? true : false;
+				}
+			}
 
 			return this.each(function () {
 				$(this).keyup(function () {
 					var password = $(this).val();
 					var complexity = 0, valid = false;
-				
-					for (var i = CHARSETS.length - 1; i >= 0; i--) {
-						complexity += additionalComplexityForCharset(password, CHARSETS[i]);
+					
+					// Reset complexity to 0 when banned password is found
+					if (!inBanlist(password)) {
+					
+						// Add character complexity
+						for (var i = CHARSETS.length - 1; i >= 0; i--) {
+							complexity += additionalComplexityForCharset(password, CHARSETS[i]);
+						}
+						
+					} else {
+						complexity = 1;
 					}
 					
 					// Use natural log to produce linear scale
@@ -146,7 +171,7 @@
 					// Scale to percentage, so it can be used for a progress bar
 					complexity = (complexity / MAX_COMPLEXITY) * 100;
 					complexity = (complexity > 100) ? 100 : complexity;
-
+					
 					callback.call(this, valid, complexity);
 				});
 			});
