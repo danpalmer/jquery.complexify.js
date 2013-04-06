@@ -176,8 +176,7 @@
       }
 
 			return this.each(function () {
-				$(this).keyup(evaluateSecurity);
-        $(this).bind('paste', evaluateSecurity);
+        $(this).bind('keyup focus', evaluateSecurity);
 			});
 			
 		}
