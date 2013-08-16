@@ -114,7 +114,7 @@
 			var defaults = {
 				minimumChars: 8,
 				strengthScaleFactor: 1,
-				bannedPasswords: COMPLEXIFY_BANLIST,
+        bannedPasswords: window.COMPLEXIFY_BANLIST || [],
 				banmode: 'strict' // (strict|loose)
 			};
 
