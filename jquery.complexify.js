@@ -115,7 +115,8 @@
 				minimumChars: 8,
 				strengthScaleFactor: 1,
         bannedPasswords: window.COMPLEXIFY_BANLIST || [],
-				banmode: 'strict' // (strict|loose)
+				banmode: 'strict', // (strict|loose)
+        evaluateOnInit: true
 			};
 
 			if($.isFunction(options) && !callback) {
@@ -173,6 +174,12 @@
         complexity = (complexity > 100) ? 100 : complexity;
         
         callback.call(this, valid, complexity);
+      }
+
+      if( options.evaluateOnInit ) {
+        this.each(function () {
+          evaluateSecurity.apply(this);
+        });
       }
 
 			return this.each(function () {
