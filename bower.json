@@ -1,0 +1,12 @@
+{
+  "name": "jquery.complexify",
+  "version": "0.3.0",
+  "main": "jquery.complexify.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
