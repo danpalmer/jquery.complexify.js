@@ -42,6 +42,15 @@ By default, the banned passwords list is empty and therefore this has no effect.
 
 **0.1** - Basic implementation
 
+
+###Alternative Implementations
+
+Several people have kindly open-sourced their implementations of this algorithm in other languages:
+
+ - Mert Dümenci [Complexify-Objc](https://github.com/mertdumenci/Complexify-ObjC)
+ - Andrey Kislyuk [node-complexify](https://github.com/kislyuk/node-complexify)
+ - Michael Crumley [php-complexify](https://github.com/mcrumley/php-complexify/)
+
 - - - 
 
 For more information, [visit the website](http://danpalmer.me/jquery-complexify).
