@@ -183,7 +183,7 @@
       }
 
 			return this.each(function () {
-        $(this).bind('keyup focus', evaluateSecurity);
+        $(this).bind('keyup focus input propertychange mouseup', evaluateSecurity);
 			});
 			
 		}
