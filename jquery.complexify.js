@@ -116,8 +116,7 @@
 				minimumChars: 8,
 				strengthScaleFactor: 1,
         bannedPasswords: window.COMPLEXIFY_BANLIST || [],
-				banmode: 'strict', // (strict|loose)
-        evaluateOnInit: true
+				banmode: 'strict' // (strict|loose)
 			};
 
 			if($.isFunction(options) && !callback) {
@@ -177,11 +176,9 @@
         callback.call(this, valid, complexity);
       }
 
-      if( options.evaluateOnInit ) {
-        this.each(function () {
-          evaluateSecurity.apply(this);
-        });
-      }
+      this.each(function () {
+        evaluateSecurity.apply(this);
+      });
 
 			return this.each(function () {
         $(this).bind('keyup focus input propertychange mouseup', evaluateSecurity);
