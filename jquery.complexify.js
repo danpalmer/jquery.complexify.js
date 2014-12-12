@@ -13,6 +13,7 @@
 			var CHARSETS = [
 				// Commonly Used
 				////////////////////
+				[0x0020, 0x0020], // Space
 				[0x0030, 0x0039], // Numbers
 				[0x0041, 0x005A], // Uppercase
 				[0x0061, 0x007A], // Lowercase
