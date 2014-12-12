@@ -116,7 +116,7 @@
 				minimumChars: 8,
 				strengthScaleFactor: 1,
         bannedPasswords: window.COMPLEXIFY_BANLIST || [],
-				banmode: 'strict' // (strict|loose)
+				banMode: 'strict' // (strict|loose)
 			};
 
 			if($.isFunction(options) && !callback) {
@@ -136,7 +136,7 @@
 			}
 
 			function inBanlist(str) {
-				if (options.banmode === 'strict') {
+				if (options.banMode === 'strict') {
 					for (var i = 0; i < options.bannedPasswords.length; i++) {
             if (options.bannedPasswords[i].indexOf(str) !== -1) {
               return true;
