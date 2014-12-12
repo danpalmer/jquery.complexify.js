@@ -35,6 +35,8 @@ By default, the banned passwords list is empty and therefore this has no effect.
 
 ### Version History
 
+**0.4** - Breaking change, "banmode" is now "banMode", and behaviour on <space> is fixed.
+
 **0.3.1** - Improved event binding, Bower support.
 
 **0.3** - Banned password list support, better event binding.
