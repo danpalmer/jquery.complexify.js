@@ -138,9 +138,16 @@
 			function inBanlist(str) {
 				if (options.banMode === 'strict') {
 					for (var i = 0; i < options.bannedPasswords.length; i++) {
-            if (options.bannedPasswords[i].indexOf(str) !== -1) {
-              return true;
-            }
+            					if (options.bannedPasswords[i].indexOf(str) !== -1) {
+              						return true;
+            					}
+					}
+					return false;
+				} else if (options.banMode === 'more-strict') {
+					for (var i = 0; i < options.bannedPasswords.length; i++) {
+            					if (str.toLowerCase().indexOf(options.bannedPasswords[i].toLowerCase()) !== -1) {
+              						return true;
+            					}
 					}
 					return false;
 				} else {
