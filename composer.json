@@ -1,5 +1,5 @@
 {
-    "name": "components/complexify",
+    "name": "danpalmer/jquery.complexify.js",
     "type": "component",
     "require": {
         "robloach/component-installer": "*"
