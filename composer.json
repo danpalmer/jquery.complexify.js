@@ -1,0 +1,17 @@
+{
+    "name": "components/complexify",
+    "type": "component",
+    "require": {
+        "robloach/component-installer": "*"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "jquery.complexify.js"
+            ],
+            "files": [
+                "jquery.complexify.min.js"
+            ]
+        }
+    }
+}
