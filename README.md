@@ -9,6 +9,14 @@ This plugin only provides client-side validation, and should be combined with so
 
 For more information, a demo, documentation, and the motivation behind Complexify, [visit the website](http://danpalmer.me/jquery-complexify).
 
+### Installation
+
+You can install this by using npm or bower
+```ruby
+    bower install jquery.complexify
+    npm install jquery.complexify@0.5.1
+```
+
 ### Contributing
 
 Contributions are always welcome! If you're uncertain about something, open a PR and we can discuss. Always feel free to ping me for an update on a merge, reminding me isn't rude, it's helpful.
