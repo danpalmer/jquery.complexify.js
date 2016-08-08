@@ -12,10 +12,9 @@ For more information, a demo, documentation, and the motivation behind Complexif
 ### Installation
 
 You can install this by using npm or bower
-```ruby
+
     bower install jquery.complexify
-    npm install jquery.complexify@0.5.1
-```
+    npm install jquery.complexify@0.5.2
 
 ### Contributing
 
