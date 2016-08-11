@@ -1,0 +1,12 @@
+{
+  "name": "jquery.complexify",
+  "version": "0.5.2",
+  "main": "jquery.complexify.js",
+  "description": "Complexify helps you to accurately gauge the quality of a user's password to give them visual feedback, and to enforce a minimum level of security.",
+  "homepage": "https://github.com/danpalmer/jquery.complexify.js",
+  "keywords":[
+    "jquery",
+    "password",
+    "complexify"
+  ]
+}
