@@ -13,7 +13,7 @@ For more information, a demo, documentation, and the motivation behind Complexif
 
 You can install this by using npm or bower
 
-    bower install jquery.complexify
+    bower install jquery.complexify.js --save
     npm install jquery.complexify@0.5.2
 
 ### Contributing
