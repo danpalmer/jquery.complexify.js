@@ -30,7 +30,7 @@ Several people have kindly open-sourced their implementations of this algorithm 
  - Michael Crumley [php-complexify](https://github.com/mcrumley/php-complexify/)
  - Maciej Podsiedlak [angular-complexify](https://github.com/Kraku/angular-complexify/)
  - Damian Marušić (Infinum) [android-complexify](https://github.com/infinum/android-complexify)
-
+ - Damian Marušić (Infinum) [java-complexify](https://github.com/infinum/java-complexify)
 - - -
 
 **This code is distributed under the WTFPL v2 licence.**
