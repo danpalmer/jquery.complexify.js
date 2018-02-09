@@ -168,7 +168,6 @@
 
         // Use natural log to produce linear scale
         complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
-        console.log("real complexity ", complexity);
 
         valid = (complexity > options.minComplexity && password.length >= options.minimumChars);
 
