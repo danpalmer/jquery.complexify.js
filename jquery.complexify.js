@@ -169,11 +169,11 @@
         // Use natural log to produce linear scale
         complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
 
-        valid = (complexity > options.minComplexity && password.length >= options.minimumChars);
-
         // Scale to percentage, so it can be used for a progress bar
         complexity = (complexity / options.maxComplexity) * 100;
         complexity = (complexity > 100) ? 100 : complexity;
+
+        valid = (complexity > options.minComplexity && password.length >= options.minimumChars);
 
         callback.call(this, valid, complexity);
       }
