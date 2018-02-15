@@ -113,6 +113,8 @@
       ];
 
       var defaults = {
+        minComplexity: MIN_COMPLEXITY,
+        maxComplexity: MAX_COMPLEXITY,
         minimumChars: 8,
         strengthScaleFactor: 1,
         bannedPasswords: window.COMPLEXIFY_BANLIST || [],
@@ -167,11 +169,11 @@
         // Use natural log to produce linear scale
         complexity = Math.log(Math.pow(complexity, password.length)) * (1/options.strengthScaleFactor);
 
-        valid = (complexity > MIN_COMPLEXITY && password.length >= options.minimumChars);
-
         // Scale to percentage, so it can be used for a progress bar
-        complexity = (complexity / MAX_COMPLEXITY) * 100;
+        complexity = (complexity / options.maxComplexity) * 100;
         complexity = (complexity > 100) ? 100 : complexity;
+
+        valid = (complexity > options.minComplexity && password.length >= options.minimumChars);
 
         callback.call(this, valid, complexity);
       }
